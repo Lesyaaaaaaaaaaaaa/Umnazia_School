@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умназия - Образовательная платформа</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E87A38;
+            --secondary: #F4A261;
+            --bg-light: #FDF6F0;
+            --bg-white: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Это обеспечивает плавный скролл к якорям */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Кнопки и Ссылки */
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 122, 56, 0.3); }
+
+        /* HEADER */
+        header { 
+            padding: 20px 0; 
+            background: var(--bg-light); 
+            /* Добавлено: sticky, чтобы меню всегда было видно */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); }
+        /* ОБНОВЛЕНО: Навигация теперь ведет к секциям по ID */
+        .menu a { margin: 0 15px; text-decoration: none; color: var(--text); font-weight: 700; transition: color 0.2s;}
+        .menu a:hover { color: var(--primary); }
+
+        /* ЭКРАН 1: ГЛАВНЫЙ */
+        .hero {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+        .hero-content { display: flex; align-items: center; justify-content: space-between; }
+        .hero-text { max-width: 500px; }
+        h1 { font-size: 46px; line-height: 1.1; margin-bottom: 20px; }
+        .hero-img { width: 450px; text-align: center; }
+        .hero-img img { width: 100%; max-width: 400px; animation: float 6s ease-in-out infinite; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ЭКРАН 2: О НАС (ЦИФРЫ) */
+        .stats { padding: 60px 0; background: var(--bg-white); text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .stat-item h3 { font-size: 40px; color: var(--primary); margin: 0; }
+        .stat-item p { font-size: 18px; color: #666; }
+
+        /* ЭКРАН 3: ВОЗРАСТА */
+        .ages { padding: 80px 0; background: var(--bg-light); }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; }
+        .ages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .age-card {
+            background: white; padding: 30px; border-radius: 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .age-icon { font-size: 40px; margin-right: 20px; }
+
+        /* ЭКРАН 4: ПРЕИМУЩЕСТВА */
+        .features { padding: 80px 0; background: var(--bg-white); }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-card { text-align: center; padding: 20px; }
+        .feature-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+
+        /* ЭКРАН 5: КУРСЫ (С ЛИСОЙ) */
+        .courses { padding: 80px 0; background: var(--bg-light); }
+        .courses-layout { display: flex; align-items: flex-start; }
+        .courses-list { flex: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .fox-block { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .course-card {
+            background: white; padding: 25px; border-radius: 20px;
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .course-card:hover { border-color: var(--primary); }
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--primary); display: block; margin-top: 15px; }
+
+        /* ЭКРАН 6: ОТЗЫВЫ */
+        .reviews { padding: 80px 0; background: var(--bg-white); }
+        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .review-card {
+            background: #f9f9f9; padding: 25px; border-radius: 20px;
+            font-style: italic; position: relative;
+        }
+        .review-author { margin-top: 15px; font-weight: bold; font-style: normal; display: flex; align-items: center; }
+        .avatar { width: 40px; height: 40px; background: #ddd; border-radius: 50%; margin-right: 10px; }
+
+        /* ЭКРАН 7: КОНТАКТЫ (С ЕНОТОМ) */
+        .contacts { padding: 80px 0; background: #FFF0E0; }
+        .contact-flex { display: flex; justify-content: space-between; align-items: center; }
+        .form-block { background: white; padding: 40px; border-radius: 20px; width: 40%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .form-input { width: 90%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; }
+        .raccoon-img { width: 35%; }
+
+        /* Футер */
+        footer { background: #333; color: white; padding: 30px 0; text-align: center; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">Умназия 🎓</div>
+            <nav class="menu">
+                <a href="#about-stats">О школе</a>
+                <a href="#courses-section">Курсы</a>
+                <a href="#reviews-section">Отзывы</a>
+                <a href="#contacts-section">Контакты</a>
+            </nav>
+            <a href="#" class="btn">Войти</a>
+        </div>
+    </header>
+
+    <section class="hero" id="main-hero"> 
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Учись, мечтай, развивайся вместе с Умназией</h1>
+                <p style="font-size: 20px; color: #555;">Современное, технологичное и дружелюбное образование для детей.</p>
+                <br>
+                <a href="#courses-section" class="btn">Попробовать бесплатно</a>
+            </div>
+            <div class="hero-img">
+                <img src="book.png" alt="3D Книга" style="width: 100%; max-width: 400px; animation: float 6s ease-in-out infinite;">
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="about-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10 000+</h3>
+                    <p>Счастливых учеников</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Авторских курсов</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5 лет</h3>
+                    <p>Успешной работы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ages" id="ages-section">
+        <div class="container">
+            <h2 class="section-title">Курсы для любого возраста 👶🧒👦</h2>
+            <div class="ages-grid">
+                <div class="age-card">
+                    <div class="age-icon">🧸</div>
+                    <div><h3>Самые маленькие</h3><p>1-6 лет</p></div>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">🎒</div>
+                    <div><h3>Младшая школа</h3><p>6-10 лет</p></div>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">📚</div>
+                    <div><h3>Средняя школа</h3><p>10-15 лет</p></div>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">🎓</div>
+                    <div><h3>Старшая школа</h3><p>15-17 лет</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features-section">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас? ✨</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Развиваем интеллект, креативность и уверенность через игру и технологии.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h3>Игровой формат</h3>
+                    <p>Дети учатся с удовольствием, проходя увлекательные сюжеты.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">👩‍🏫</span>
+                    <h3>Забота педагогов</h3>
+                    <p>Поддержка преподавателей на каждом этапе обучения.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💻</span>
+                    <h3>Онлайн 24/7</h3>
+                    <p>Удобная платформа. Занимайтесь когда и где удобно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses" id="courses-section">
+        <div class="container">
+            <h2 class="section-title">Популярные курсы 🔥</h2>
+            <div class="courses-layout">
+                <div class="courses-list">
+                    <div class="course-card">
+                        <h3>Эмоциональный интеллект</h3>
+                        <p>🗓 50 занятий • 6-13 лет</p>
+                        <span class="price-tag">1 490 ₽</span>
+                        <br>
+                        <a href="#" style="color: var(--primary);">Смотреть курс →</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>Математика и логика</h3>
+                        <p>⏰ 15 часов • 8-13 лет</p>
+                        <span class="price-tag">1 590 ₽</span>
+                        <br>
+                        <a href="#" style="color: var(--primary);">Смотреть курс →</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>Культурный код</h3>
+                        <p>🗓 55 занятий • 7-13 лет</p>
+                        <span class="price-tag">1 990 ₽</span>
+                        <br>
+                        <a href="#" style="color: var(--primary);">Смотреть курс →</a>
+                    </div>
+                    <div class="course-card">
+                        <h3>Финансовая грамотность</h3>
+                        <p>🗓 20 занятий • 10-15 лет</p>
+                        <span class="price-tag">1 690 ₽</span>
+                        <br>
+                        <a href="#" style="color: var(--primary);">Смотреть курс →</a>
+                    </div>
+                </div>
+                
+                <div class="fox-block">
+                    <img src="fox.png" alt="3D Лиса" style="width: 100%; max-width: 300px; animation: float 6s ease-in-out infinite;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews" id="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы родителей 💬</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p>"Сын в восторге от курса по математике! Раньше заставить решать задачи было невозможно, а теперь сам просит."</p>
+                    <div class="review-author"><div class="avatar"></div> Мария, мама Егора</div>
+                </div>
+                <div class="review-card">
+                    <p>"Очень красивый и удобный сайт. Ребенку нравится персонаж Лисенок, который помогает в уроках."</p>
+                    <div class="review-author"><div class="avatar"></div> Анна, мама Светы</div>
+                </div>
+                <div class="review-card">
+                    <p>"Спасибо за курс по Эмоциональному интеллекту. Дочь стала спокойнее и лучше понимает свои чувства."</p>
+                    <div class="review-author"><div class="avatar"></div> Олег, папа Кати</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts-section">
+        <div class="container">
+            <h2 class="section-title">Остались вопросы? ✉️</h2>
+            <div class="contact-flex">
+                <div class="form-block">
+                    <p><strong>Мы всегда рады помочь!</strong></p>
+                    <p>Телефон: +7 (495) 124-55-68</p>
+                    <p>Email: info@umnazia.ru</p>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+                    
+                    <input type="text" class="form-input" placeholder="Ваше имя" value="Иван Иванов">
+                    <input type="text" class="form-input" placeholder="Email" value="ivan@mail.ru">
+                    <button class="btn" style="width: 100%;">Отправить сообщение</button>
+                </div>
+
+                <div class="raccoon-img">
+                    <img src="raccoon.png" alt="3D Енот" style="width: 100%; max-width: 400px; transform: rotate(5deg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Умназия. г. Томск, ул. Тверская, д. 10. БЦ "Образование".</p>
+        <p>Политика конфиденциальности</p>
+    </footer>
+
+</body>
+</html>
