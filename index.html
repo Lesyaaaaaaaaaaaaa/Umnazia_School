@@ -46,7 +46,7 @@
         /* HEADER */
         header { 
             padding: 20px 0; 
-            background: var(--bg-light); 
+            background: #FCF0E6; 
             /* Добавлено: sticky, чтобы меню всегда было видно */
             position: sticky;
             top: 0;
@@ -87,22 +87,35 @@
         /* ЭКРАН 3: ВОЗРАСТА */
         .ages { padding: 80px 0; background: var(--bg-light); }
         .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; }
-        .ages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .ages-grid {display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px; /* Добавьте эту строку */
+    margin: 0 auto; /* Центрирование */
+}
         .age-card {
             background: white; padding: 30px; border-radius: 20px;
             display: flex; align-items: center; justify-content: space-between;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .age-icon { font-size: 40px; margin-right: 20px; }
+	.age-card div {
+    flex: 1;
+    padding-top: 5px; /* Небольшой отступ сверху для выравнивания */
+}
+        .age-icon { 
+    font-size: 70px;
+    margin: 0 15px 0 30px; /* top, right, bottom, left - добавил слева 15px */
+    flex-shrink: 0;
+}
 
         /* ЭКРАН 4: ПРЕИМУЩЕСТВА */
         .features { padding: 80px 0; background: var(--bg-white); }
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .feature-card { text-align: center; padding: 20px; }
-        .feature-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+        .feature-icon { font-size: 60px; margin-bottom: 20px; display: block; }
 
         /* ЭКРАН 5: КУРСЫ (С ЛИСОЙ) */
-        .courses { padding: 80px 0; background: var(--bg-light); }
+        .courses { padding: 90px 0; background: var(--bg-light); }
         .courses-layout { display: flex; align-items: flex-start; }
         .courses-list { flex: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .fox-block { flex: 1; display: flex; justify-content: center; align-items: center; }
@@ -111,15 +124,22 @@
             border: 2px solid transparent; transition: 0.3s;
         }
         .course-card:hover { border-color: var(--primary); }
-        .price-tag { font-size: 22px; font-weight: 800; color: var(--primary); display: block; margin-top: 15px; }
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--primary); display: block; margin-top: 0px; }
 
         /* ЭКРАН 6: ОТЗЫВЫ */
         .reviews { padding: 80px 0; background: var(--bg-white); }
         .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .review-card {
-            background: #f9f9f9; padding: 25px; border-radius: 20px;
-            font-style: italic; position: relative;
-        }
+    		background: #f9f9f9; 
+    		padding: 25px; 
+    		border-radius: 20px;
+    		font-style: italic; 
+    		position: relative;
+    		min-height: 120px; /* Добавьте эту строку */
+    		display: flex; /* И эти две строки для лучшего выравнивания */
+    		flex-direction: column;
+    		justify-content: space-between;
+	}
         .review-author { margin-top: 15px; font-weight: bold; font-style: normal; display: flex; align-items: center; }
         .avatar { width: 40px; height: 40px; background: #ddd; border-radius: 50%; margin-right: 10px; }
 
@@ -138,7 +158,9 @@
 
     <header>
         <div class="container nav-flex">
-            <div class="logo">Умназия 🎓</div>
+            <div class="logo">
+    <img src="log.png" alt="Фото" style="width: 30px; height: 30px; border-radius: 0%; vertical-align: middle; margin-left: 8px;">  Умназия
+</div>
             <nav class="menu">
                 <a href="#about-stats">О школе</a>
                 <a href="#courses-section">Курсы</a>
@@ -158,7 +180,7 @@
                 <a href="#courses-section" class="btn">Попробовать бесплатно</a>
             </div>
             <div class="hero-img">
-                <img src="book.png" alt="3D Книга" style="width: 100%; max-width: 400px; animation: float 6s ease-in-out infinite;">
+                <img src="book.png" alt="3D Книга" style="width: 100%; max-width: 550px; animation: float 6s ease-in-out infinite;">
             </div>
         </div>
     </section>
@@ -278,15 +300,21 @@
             <div class="reviews-grid">
                 <div class="review-card">
                     <p>"Сын в восторге от курса по математике! Раньше заставить решать задачи было невозможно, а теперь сам просит."</p>
-                    <div class="review-author"><div class="avatar"></div> Мария, мама Егора</div>
+                    <div class="review-author">
+    <div class="avatar" style="background: #E87A38; color: white; display: flex; align-items: center; justify-content: center;">М</div> Мария, мама Егора
+</div>
                 </div>
                 <div class="review-card">
-                    <p>"Очень красивый и удобный сайт. Ребенку нравится персонаж Лисенок, который помогает в уроках."</p>
-                    <div class="review-author"><div class="avatar"></div> Анна, мама Светы</div>
+                    <p>"Очень красивый и удобный сайт. Ребенку нравится персонаж Лисёнок, который помогает в уроках."</p> 
+                    <div class="review-author">
+    <div class="avatar" style="background: #F4A261; color: white; display: flex; align-items: center; justify-content: center;">А</div> Анна, мама Светы
+</div>
                 </div>
                 <div class="review-card">
                     <p>"Спасибо за курс по Эмоциональному интеллекту. Дочь стала спокойнее и лучше понимает свои чувства."</p>
-                    <div class="review-author"><div class="avatar"></div> Олег, папа Кати</div>
+                    <div class="review-author">
+    <div class="avatar" style="background: #2E8B57; color: white; display: flex; align-items: center; justify-content: center;">О</div> Олег, папа Кати
+</div>
                 </div>
             </div>
         </div>
@@ -308,7 +336,7 @@
                 </div>
 
                 <div class="raccoon-img">
-                    <img src="raccoon.png" alt="3D Енот" style="width: 100%; max-width: 400px; transform: rotate(5deg);">
+                    <img src="raccoon.png" alt="3D Енот" style="width: 100%; max-width: 300px; animation: float 6s ease-in-out infinite;">
                 </div>
             </div>
         </div>
